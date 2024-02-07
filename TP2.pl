@@ -51,3 +51,17 @@ ajout([[[[], 3, []], 4, [[], 5, []]] , 6, [[], 7, []]], 2, R).
 
 /* ----- Problème 3 ----- */
 
+/* Prédicat qui compare les feuilles de 2 arbres n-aires */
+
+/* Prédicat de concaténation */
+concatenation([], L, L).
+concatenation([T|Q], L, [T|R]):- concatenation(Q, L, R).
+
+/* Prédicat d'applatissement d'un arbre dans une liste*/
+aplatir([], []).
+aplatir([T|Q], R):- !, aplatir(T, T2), aplatir(Q, Q2), concatenation(T2, Q2, R).
+aplatir(A, [A]).
+
+/* Prédicat de comparaison des feuilles */
+memes_feuilles([], []).
+memes_feuilles(X, Y):- aplatir(X, X2)
