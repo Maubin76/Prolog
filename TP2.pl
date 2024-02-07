@@ -22,7 +22,7 @@ triParInsertionEnveloppee([T|Q], S) :- triParInsertionEnveloppee(Q, QS), inserer
     Acc : Accumulateur
     S : Liste triée */
 triParInsertionTerminale([],R,R).
-triParInsertionTerminale([T|Q],Acc,S) :- inserer(T,Acc,R3), triParInsertionTerminale(Q,R3,S).
+triParInsertionTerminale([T|Q],Acc,S) :- inserer(T,Acc,R), triParInsertionTerminale(Q,R,S).
 
 /* Tests
 
@@ -30,9 +30,24 @@ inserer(3,[1,2,4,5,6],R).
     -> R = [1,2,3,4,5,6]
 triParInsertionEnveloppee([3,2,6,1,4,5],R).
     -> R = [1,2,3,4,5,6]
-triParInsertionTerminale([3,2,6,1,4,5],R,[]).
+triParInsertionTerminale([3,2,6,1,4,5],[],R).
     -> R = [1,2,3,4,5,6]
 */
 
 /* ----- Problème 2 ----- */
+
+/* Prédicat d'ajout dans un arbre binaire de recherche */
+ajout([], A, [[], A, []]).
+ajout([G, N, D], N, [G, N, D]).
+ajout([G, N, D], A, [GA, N, D]) :- A < N, ajout(G, A, GA).
+ajout([G, N, D], A, [G, N, DA]) :- A > N, ajout(D, A, DA).
+
+/* Test qui donne l'arbre du sujet de TP
+
+ajout([[[[], 3, []], 4, [[], 5, []]] , 6, [[], 7, []]], 2, R).
+    -> R = [[[[[],2,[]],3,[]],4,[[],5,[]]],6,[[],7,[]]]
+    -> Ajout de 2 en bas à gauche de l'arbre
+*/
+
+/* ----- Problème 3 ----- */
 
