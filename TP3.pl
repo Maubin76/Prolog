@@ -18,4 +18,9 @@ voisin(canard, chat, L);
 entre(serpent, pingouin, ver, L).
 entre(ver, lion, pinguoin).
 
-boite([X1, X2, X3, X4, X5, X6]):- 
+boite([X1, X2, X3, X4, X5, X6]):- L = [ver, serpent, lion, canard, chat, pingouin],
+                                  permut(L, [X1, X2, X3, X4, X5, X6]),
+                                  permut([lion, chat], [X2, X3]),
+                                  voisin(canard, chat, L),
+                                  entre(serpent, pingouin, ver, L),
+                                  entre(ver, lion, pinguoin).
