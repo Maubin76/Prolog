@@ -58,10 +58,21 @@ concatenation([], L, L).
 concatenation([T|Q], L, [T|R]):- concatenation(Q, L, R).
 
 /* Prédicat d'applatissement d'un arbre dans une liste*/
-aplatir([], []).
+aplatir([], []) :- !.
 aplatir([T|Q], R):- !, aplatir(T, T2), aplatir(Q, Q2), concatenation(T2, Q2, R).
-aplatir(A, [A]).
+aplatir(A, [A])
+
+/* Test 
+
+aplatir([ [ [ a, b, c ], d ] , e ]).
+    -> R = [a, b, c, d, e]
+*/
 
 /* Prédicat de comparaison des feuilles */
-memes_feuilles([], []).
-memes_feuilles(X, Y):- aplatir(X, X2)
+memes_feuilles(X, Y):- aplatir(X, L), aplati(Y, L).
+
+/* Test
+    memes_feuilles([ [ [ a, b, c ], d ] , e ], [ [ [ a, b, c ], d ] , e ]).
+    -> true
+*/
+
