@@ -22,7 +22,7 @@ entre(X,Y,Z,[X,Y,Z|Q]).
 entre(X,Y,Z,[Z,Y,X|Q]).
 entre(X,Y,Z,[T|Q]):-entre(X,Y,Z,Q).
 
-boite([X1, X2, X3, X4, X5, X6]):- % Génération de la liste des animeaux
+boite([X1, X2, X3, X4, X5, X6]):- % Génération de la liste des animaux
                                   permut([chat, lion, serpent, canard, ver, pingouin], [X1, X2, X3, X4, X5, X6]),
                                   % Animal à griffes à la 2ème ou 3ème position
                                   griffe(X2),griffe(X3), 
